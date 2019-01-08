@@ -684,7 +684,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun readIn() {
         var read = history.deQueue()
         while (read != null) {
-            if(read.pressed) {
+            if(read.pressed) {//this check should be redundant but it's been weird so just in case
                 onClick(read.id, false)
             }
             read = history.deQueue()

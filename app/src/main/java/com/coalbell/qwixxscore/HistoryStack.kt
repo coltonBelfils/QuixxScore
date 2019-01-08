@@ -3,7 +3,7 @@ package com.coalbell.qwixxscore
 import android.os.Parcel
 import android.os.Parcelable
 
-class HistoryStack() : Parcelable{
+class HistoryStack() : Parcelable {
     private var head: Node<QButton>
     private var tail: Node<QButton>
     var size: Int = 0
@@ -13,7 +13,7 @@ class HistoryStack() : Parcelable{
 
     constructor(parcel: Parcel) : this() {
         var array = parcel.readParcelableArray(HistoryStack::class.java.classLoader)
-        if(array != null) for (i in array) {
+        if (array != null) for (i in array) {
             this.push(i as QButton)
         }
 
@@ -52,24 +52,27 @@ class HistoryStack() : Parcelable{
     }
 
     fun pop(): QButton? {
-        if(!this.isEmpty()) {
+        if(!isEmpty()) {
             val temp = this.head.next?.data
-            this.head.next = this.head.next?.next
-            this.size--
+            this.head = this.head.next!!
+            this.head.data = null
+            if (size > 0) this.size--
             return temp
         }
         return null
     }
 
     fun deQueue(): QButton? {
-        if(this.queueMark == this.head) {
+        if (this.queueMark == this.head) {
             return null
         }
+        if (queueMarkLength < size) queueMarkLength++
         queueMark = queueMark?.prev
         return queueMark?.data
     }
 
     fun resetQueue() {
+        queueMarkLength = 0
         queueMark = tail
     }
 
@@ -77,10 +80,10 @@ class HistoryStack() : Parcelable{
         var tempMarker = queueMark
         this.resetQueue()
 
-        var array = Array<QButton?>(this.size) {null}
+        var array = Array<QButton?>(size) { null }
         var histRead = this.deQueue()
         var index = 0
-        while(histRead != null) {
+        while (histRead != null && index < size) {
             array[index] = histRead
             histRead = this.deQueue()
             index++
@@ -98,10 +101,10 @@ class HistoryStack() : Parcelable{
 
     override fun toString(): String {
         val tempMarker = queueMark
-        var str = StringBuilder().append("HistoryStack: size-$size, isEmpty-${isEmpty()}, contents-\n")
+        var str = StringBuilder().append("HistoryStack: size==$size, isEmpty==${isEmpty()}, contents:\n")
 
         var histRead = this.deQueue()
-        while(histRead != null) {
+        while (histRead != null) {
             str.append("$histRead\n")
             histRead = this.deQueue()
         }
