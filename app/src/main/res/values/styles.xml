@@ -1,11 +1,26 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <attr name="scratch" format="reference"/>
+    <attr name="scratchLine" format="reference"/>
+
+    <style name="PurpleTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryPurple</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkPurple</item>
+        <item name="colorAccent">@color/colorAccentPurple</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDarkPurple</item>
+        <item name="scratch">@drawable/scratch</item>
+        <item name="scratchLine">@drawable/scratch_line</item>
     </style>
+
+    <style name="MintTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryMint</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkMint</item>
+        <item name="colorAccent">@color/colorAccentMint</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDarkMint</item>
+        <item name="scratch">@drawable/scratch</item>
+        <item name="scratchLine">@drawable/scratch_line</item>
+    </style>
+    <style name="PurpleTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="PurpleTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>
